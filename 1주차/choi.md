@@ -120,3 +120,16 @@
 
 
 **[클린아키텍처 썼는데 왜 프로젝트가 더 더러워지지](https://medium.com/mj-studio/클린아키텍처-썼는데-왜-프로젝트가-더-더러워지지-3565aaffca8c)**
+
+
+# Reference
+
+**[The Clean Code Blog by Robert C. Martin (Uncle Bob)](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)**
+
+![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/f3ba87b6-a6ff-413d-8dd5-1654fcc9524b)
+- 소프트웨어 개발 디자인 패턴 중 하나
+- 로버트 C. 마틴이 제안한 아키텍처 원칙
+- 헥사고날 아키텍처 or 포트와 어댑터 패턴이라고도 부름 (책 22장에서 다룰 예정)
+
+
+**[클린아키텍처 썼는데 왜 프로젝트가 더 더러워지지](https://medium.com/mj-studio/클린아키텍처-썼는데-왜-프로젝트가-더-더러워지지-3565aaffca8c)**
