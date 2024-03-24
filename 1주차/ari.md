@@ -48,22 +48,22 @@
 
 ## 객체 지향 프로그래밍
 
-> 객체 지향(Object-Oriented) 프로그래밍은 캡슐화, 상속, 다형성 본질이 있다.
+-  객체 지향(Object-Oriented) 프로그래밍은 캡슐화, 상속, 다형성 본질이 있다.
 
 ### 1. 캡슐화
 
 - 데이터와 메서드를 하나의 단위로 묶어 외부에서 직접 접근하지 못하도록 보호하는 개념입니다.
 
-```
+``` java
 public class Person {
 	// 멤버 변수를 사용하여 age 접근 제한
 	private int age;
-
-  // 접근은 제한하지만, 데이터를 읽고 변경하기 위해서 getter, setter 함수를 쓴다.
+	
+	// 접근은 제한하지만, 데이터를 읽고 변경하기 위해서 getter, setter 함수를 쓴다.
 	public int getAge() {
 		return age;
 	}
-
+	
 	public void setAge(int age) {
 		if (age >= 0) {
 			this.age = age;
