@@ -55,7 +55,9 @@
 
 아래의 그림에서 보면 BusinessRules는 Database Interface를 사용하여 데이터를 로드하고 저장한다. DatabaseAccess는 DatabaseInterface를 구현하며, Database를 실제로 조작하는 일을 맡는다.
 
-![alt text](image.png)
+<p align="center">
+<img width="431" style="text-align: center;" alt="image" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/70371342/ada06153-9e82-4a07-a6e6-6d833f22baee">
+</p>
 
 경계선은 Interface, Database Access사이에 그어진다. 
 
@@ -64,7 +66,9 @@ Database Access에서 출발하는 두 화살표에 집중 → 이 도표에서 
 > 비즈니스 규칙, 데이터베이스가 서로 다른 계층으로 분리되어야 한다는 점을 강조한다고 생각.
 > 
 
-![alt text](image-1.png)
+<p align="center">
+<img width="430" alt="image" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/70371342/e0507e8a-78ca-45a5-8827-e734713266a9">
+</p>
 
 큰 개념에서 보게되면 
 
@@ -90,7 +94,9 @@ Business Rules 컴포넌트에게 있어 Database 컴포넌트는 문제가 되�
 
 위의 Business Rules 컴포넌트와 Databse 컴포넌트의 관계와 같이 Business 컴포넌트는 GUI 컴포넌트를 신경쓰지 않는다.
 
-![alt text](image-2.png)
+<p align="center">
+<img width="435" alt="image" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/70371342/6f9547d2-71ef-4823-b17d-195d2e04b3da">
+</p>
 
 GUI와 BusinessRules 컴포넌트 사이의 경계
 
@@ -103,7 +109,9 @@ GUI와 BusinessRules 컴포넌트가 경계선에 의해 분할된다는 사실�
 
 데이터베이스와 GUI에 대해 내린 두 가지 결정을 하나로 합쳐서 보면 컴포넌트 추가와 관련한 일종의 패턴이 만들어진다. **이 패턴은 시스템에서 서드 파티 플러그인을 사용할 수 있게 한** 바로 그 패턴과 동일하다.
 
-![alt text](image.png)
+<p align="center">
+<img width="430" alt="image" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/70371342/37f4fae9-8896-4629-b0de-405d166d9786">
+</p>
 
 업무 규칙에 플러그인 형태로 연결하기
 
@@ -117,7 +125,9 @@ GUI는 사용자의 입력과 상호 작용을 담당하고, 비즈니스 규칙
 
 ReSharper와 비주얼 스튜디오(Visual Studio)의 관계를 보자.
 
-![alt text](image.png)
+<p align="center">
+<img width="350" alt="image" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/70371342/5551324d-a603-4ed0-9275-22deca924e41">
+</p>
 
 ReSharper는 비주얼 스튜디오의 확장 프로그램으로, 개발자가 코드를 더 효율적으로 작성하고 관리할 수 있게 돕는 도구이다. ReSharper가 Visual Studio의 소스 코드에 의존하기 때문에 비주얼 스튜디오 팀은 원한다면 언제든지 ReSharper팀을 완전히 무력화할 수 있는 위치에 존재한다.
 
