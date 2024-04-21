@@ -61,6 +61,7 @@
 - 해당 장은 움퍼스 사냥 게임을 예시로 구조를 설명
 
 ### 움퍼스 사냥 게임
+![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/a0133465-5d12-4d3a-b892-479c26980511)
 
 - 1972년 발매한 모험 게임
 - 텍스트 기반 단순한 명령어로 동작 (GO EAST, SHOOT WEST…)
@@ -70,11 +71,12 @@
 
        
     2. 게임의 상태를 영속적 저장소에 유지한다면? (플래시 메모리, 클라우드, RAM 등)
+       
+        ![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/92a97516-d60f-4c97-ba8f-7fb8057ef047)
+
         - 게임 규칙이 다양항한 언어, 데이터 저장소에 대해 알 필요가 없는 구조
         - 의존성 규칙을 준수할 수 있도록 의존성이 적절한 방향을 가리키게 만들어야 함
     
-    ![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/92a97516-d60f-4c97-ba8f-7fb8057ef047)
-
 
 ### 클린 아키텍처?
 - 사용자의 명령어 UI 매커니즘이 다양화 된다면? (Shell, text, 채팅 앱 등)
@@ -84,14 +86,15 @@
     
     ![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/3f3f661a-6778-440d-be14-72747da8795d)
 
-    - 이러한 변형들을 모두 제거하고 순전히 API 컴포넌트만 집중하면 다이어그램을 단순화할 수 있다.
-        - 모든 화살표가 위를 향하도록 맞춰진 형태
-            - 화살표는 데이터 흐름의 방향이 아니라 소스 코드의 의존성의 방향
-        - 데이터 흐름을 두 개의 흐름으로 분리
-            - 왼쪽의 흐름은 사용자와의 통신 관여
-            - 오른쪽의 흐름은 데이터 영속성에 관여
-        - Game Rules는 데이터에 대한 최종적인 처리기
-            - 상단에 위치한 컴포넌트를 중앙 변환(Central Transform) 이라고 칭함
+- 다이어그램 단순화하기
+    - 순전히 API 컴포넌트만 집중
+    - 모든 화살표가 위를 향하도록 맞춰진 형태
+        - 화살표는 데이터 흐름의 방향이 아니라 소스 코드의 의존성의 방향
+    - 데이터 흐름을 두 개의 흐름으로 분리
+        - 왼쪽의 흐름은 사용자와의 통신 관여
+        - 오른쪽의 흐름은 데이터 영속성에 관여
+    - Game Rules는 데이터에 대한 최종적인 처리기
+        - 상단에 위치한 컴포넌트를 중앙 변환(Central Transform) 이라고 칭함
 
 ![image](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/25587196/9159e45f-11b0-412a-b9b4-e1c05e3acf17)
 
