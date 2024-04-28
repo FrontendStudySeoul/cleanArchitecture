@@ -28,14 +28,15 @@
 
 ## 타깃-하드웨어 병목현상
 
-![펌웨어 + 하드웨어](https://private-user-images.githubusercontent.com/93532696/326227226-560c1a66-58ac-4703-b43a-7487e203e93d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQyODA5MzgsIm5iZiI6MTcxNDI4MDYzOCwicGF0aCI6Ii85MzUzMjY5Ni8zMjYyMjcyMjYtNTYwYzFhNjYtNThhYy00NzAzLWI0M2EtNzQ4N2UyMDNlOTNkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI4VDA1MDM1OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZmNDU2ZjUzYzg4NTVhZGJiMDc3NjZjZjU3YWNmNGExMDQwMzIwYjMyNTVmYWMxYTk0MjllMDZkYzkzYzgzNTUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.s5zA0s-acJF837a-gaESg5Gm1XZ2-efAbpSULVqwdbk)
+<img width="264" alt="1" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/93532696/ad69f169-397f-4c78-be5a-c8d33d734bec">
+
 
 소프트웨어와 펌웨어가 서로 섞이는 안티패턴이 발생한다면 코드 변경도 어렵고 변경자체가 위험을 수반하게 된다.
 이는 가벼운 수정에도 전체 시스템 회귀 테스트가 필요하게된다.
 
 ### 하드웨어는 "세부사항"이다.
 
-![HAL-하드웨어 추상화 계층](https://private-user-images.githubusercontent.com/93532696/326227244-bce3ed0f-2ae2-4130-8497-57af1e5687cc.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQyODA5MzgsIm5iZiI6MTcxNDI4MDYzOCwicGF0aCI6Ii85MzUzMjY5Ni8zMjYyMjcyNDQtYmNlM2VkMGYtMmFlMi00MTMwLTg0OTctNTdhZjFlNTY4N2NjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI4VDA1MDM1OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTVkYjkwOTY1NWIyYWUwNjllYzJiYzBhZTc4NDFhNDc5MGE0YmRmNjg4MWY4ODlkNjQ5YmUzMDhmNDdhNWEyNzImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.W2zShtSHqugmrW6ldqEimeEL21OhvhPlT5xHozyZu1U)
+<img width="370" alt="2" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/93532696/a5757ad7-a4a0-4714-b070-7f8e8a41467f">
 
 소프트웨어와 펌웨어 사이의 경계는 **하드웨어 추상화 계층(Hardware Abstraction Layer, HAL)** 이라고 부른다.
 - HAL은 자신보다 위에 있는 소프트웨어를 위해 존재, API는 소프트웨어의 필요성에 맞게 만들어져야한다.
@@ -48,7 +49,7 @@ _즉, 중간에서 이루어지는 것들은 HAL이 제공하고, 어떻게 동�
 보통 임베디드 시스템에선 HAL만으로 충분하지만, 실시간 운영체제(RTOS)나 리눅스/윈도우를 사용한다면? 이때는 세부사항을 운영체제로 취급해야하고, 운영체제에 의존하는 일을 막아야한다.
 이때 클린 임베디드 아키텍처에서는 운영체제 추상화계층(OSAL)을 통해 격리시킨다.
  
-![운영체제 추상화 계층](https://private-user-images.githubusercontent.com/93532696/326227249-8e6f2f96-519d-4302-98cd-58a726808e0b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQyODA5MzgsIm5iZiI6MTcxNDI4MDYzOCwicGF0aCI6Ii85MzUzMjY5Ni8zMjYyMjcyNDktOGU2ZjJmOTYtNTE5ZC00MzAyLTk4Y2QtNThhNzI2ODA4ZTBiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI4VDA1MDM1OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQwZGJiYTU1Yjg1YTJkMGU5OWJmY2JmMTY5N2NiN2M4Njk4NDY1ZGE5MDc3MDIwNjNhZjNkOTY1NWNkNTkwZmEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.JMPfh7GWCJwEA5mMOF6emZKRf0RAFAAet3KXL3CiGqA)
+<img width="273" alt="3" src="https://github.com/FrontendStudySeoul/cleanArchitecture/assets/93532696/d3041e10-4a36-4ea2-8af8-66bcc66b2a99">
 
 이 처럼 소프트웨어가 운영체제에 직접 의존하지 않고, OSAL에 의존한다면 대부분의 작업을 수정하는 일과 정의된 인터페이스에 맞게 코드를 작성이 가능해지게 된다.
 하지만 이렇게 추상 단계를 만들게 되면, 결국 코드가 '비대화'가 발생하게되는데,(결국 OS에 관련된 중복된 정보가 OSAL에서도 작성되어야하기 때문) 이는 애플리케이션에 공통 구조를 만드는데 리소스를 드는 일이기 때문에 상대적으로 큰 문제가 되지 않는다.
@@ -100,6 +101,6 @@ _즉, 추상 계층을 만들게 되면 실제 '세부사항'의 영역에 크�
 
 <br/>
 
-![클린 아키텍처](https://private-user-images.githubusercontent.com/93532696/326230459-33c6e22b-7e67-4835-884b-61dc6e974156.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQyODA0NzUsIm5iZiI6MTcxNDI4MDE3NSwicGF0aCI6Ii85MzUzMjY5Ni8zMjYyMzA0NTktMzNjNmUyMmItN2U2Ny00ODM1LTg4NGItNjFkYzZlOTc0MTU2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI4VDA0NTYxNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWMzOWE1MjU5MjAzMmUxZWMyNjk0YmJjMWJjYjI0ZGMzM2RhZTJjODJjYjU3YmYxZThkMWZmZGMzYWViYmMxN2YmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.6oHiWzgoVsj24brK0rRRMwIFsv-KMokhDtPo2bR3RU4)
+![4](https://github.com/FrontendStudySeoul/cleanArchitecture/assets/93532696/ca2d5f5f-2b9e-43aa-8c05-d14ceafc1b99)
 
 결국, 추상화와 세부사항의 분리는 클린 아키텍처에서 중요한 원칙이며, 추상화된 인터페이스를 통해 내부 로직과 외부 요소 간의 결합도를 줄이며, 이는 시스템의 모듈성과 유연성을 증진시키는 것이 목적.
