@@ -82,6 +82,24 @@ _즉, 추상 계층을 만들게 되면 실제 '세부사항'의 영역에 크�
 하드웨어 추상화 계층이 있다면? HAL 뒤에 가려진 세부사항이 될 것. 만약 HAL이 조건부 컴파일 대신 사용할 수 있는 일련의 인터페이스를 제공한다며?
 우리는 링커 또는 다른 형태의 실시간 바인딩을 사용해서 소프트웨어를 하드웨어와 연결할 수 있다.
 
+## Next의 이미지 최적화 서버 인터페이스 추상화
+
+- [image-optimizer.ts](https://github.dev/vercel/next.js/blob/3f907d38cbb3a97d5201d4add5757d64453756c7/packages/next/src/server/image-optimizer.ts#L26)
+  - [get-max-age 테스트](https://github.dev/vercel/next.js/blob/3f907d38cbb3a97d5201d4add5757d64453756c7/test/unit/image-optimizer/get-max-age.test.ts#L2)
+  - [detect-content-type 테스트](https://github.dev/vercel/next.js/blob/3f907d38cbb3a97d5201d4add5757d64453756c7/test/unit/image-optimizer/detect-content-type.test.ts#L2)
+- [next-server.ts](https://github.dev/vercel/next.js/blob/3f907d38cbb3a97d5201d4add5757d64453756c7/packages/next/src/server/next-server.ts#L587)
+- [base-server.ts](https://github.dev/vercel/next.js/blob/3f907d38cbb3a97d5201d4add5757d64453756c7/packages/next/src/server/base-server.ts#L1445)
+
+이처럼 라이브러리에서 실제 사용되는 곳에서는 해당 라이브러리가 어떤 함수가 어떤 동작으로 이루어지는지 알필요가 없으며, 사용된 함수 조차도 내부에서 다시 불러들이는 또 다른 함수나 인터페이스를 불러와지게 되는데 마찬가지로 불러오는 곳이 정확히 어떤 방식으로 구동되는지 크게 알필요가 없다. 
+
+추상화 구조가 잘 나뉘어져있고, 사용하는 곳에서 필요한 request, response 정보만 알고 있다면 비지니스 로직 명확히 분리가 가능하다는점.
+
+이처럼 인터페이스가 잘 구분되어있다면 해당 함수의 테스트 또한 별도로 작성하기 쉽다는 것을 알 수 있다.
+
+즉, 하나의 라이브러리의 코드 레벨로써 세부사항을 살펴보자면, `next/image` 컴포넌트(실제 사용되는 <Image> 컴포넌트)에서는 `base-server.ts`가 세부사항이 되고, `base-server.ts`는 `next-server.ts`가 세부사항이 되며, `next-server.ts`는 `image-optimizer.ts`가 세부사항이 된다.
+
+<br/>
+
 ![클린 아키텍처](https://private-user-images.githubusercontent.com/93532696/326230459-33c6e22b-7e67-4835-884b-61dc6e974156.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQyODA0NzUsIm5iZiI6MTcxNDI4MDE3NSwicGF0aCI6Ii85MzUzMjY5Ni8zMjYyMzA0NTktMzNjNmUyMmItN2U2Ny00ODM1LTg4NGItNjFkYzZlOTc0MTU2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI4VDA0NTYxNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWMzOWE1MjU5MjAzMmUxZWMyNjk0YmJjMWJjYjI0ZGMzM2RhZTJjODJjYjU3YmYxZThkMWZmZGMzYWViYmMxN2YmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.6oHiWzgoVsj24brK0rRRMwIFsv-KMokhDtPo2bR3RU4)
 
 결국, 추상화와 세부사항의 분리는 클린 아키텍처에서 중요한 원칙이며, 추상화된 인터페이스를 통해 내부 로직과 외부 요소 간의 결합도를 줄이며, 이는 시스템의 모듈성과 유연성을 증진시키는 것이 목적.
